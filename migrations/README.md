@@ -2,7 +2,7 @@
 
 `supabase/migrations` is a consolidation of SQL migrations from:
 
-- khulnasoft/postgres
+- supabase/postgres
 - supabase/supabase
 - supabase/cli
 - supabase/infrastructure (internal)
@@ -22,7 +22,7 @@ For compatibility with hosted projects, we include [migrate.sh](migrate.sh) that
 2. Run all `db/migrations` with `supabase_admin` superuser role.
 3. Finalize role passwords with `/etc/postgres.schema.sql` if present.
 
-Additionally, [khulnasoft/postgres](https://github.com/khulnasoft/postgres/blob/develop/ansible/playbook-docker.yml#L9) image contains several migration scripts to configure default extensions. These are run first by docker entrypoint and included in ami by ansible.
+Additionally, [supabase/postgres](https://github.com/supabase/postgres/blob/develop/ansible/playbook-docker.yml#L9) image contains several migration scripts to configure default extensions. These are run first by docker entrypoint and included in ami by ansible.
 
 ## Guidelines
 
@@ -75,4 +75,4 @@ docker-compose run --rm dbmate up
 
 ## Testing
 
-Migrations are tested in CI to ensure they do not raise an exception against previously released `khulnasoft/postgres` docker images. The full version matrix is at [test.yml](./.github/workflows/test.yml) in the `supabase-version` variable.
+Migrations are tested in CI to ensure they do not raise an exception against previously released `supabase/postgres` docker images. The full version matrix is at [test.yml](./.github/workflows/test.yml) in the `supabase-version` variable.

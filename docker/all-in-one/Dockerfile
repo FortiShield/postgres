@@ -1,18 +1,18 @@
-ARG postgres_version=15.1.0.148
+ARG postgres_version=15.1.1.24
 
 ARG pgbouncer_release=1.18.0
 ARG postgrest_release=10.1.2
 ARG gotrue_release=2.130.0
-ARG adminapi_release=0.62.0
-ARG adminmgr_release=0.14.3
+ARG adminapi_release=0.63.5
+ARG adminmgr_release=0.19.0
 ARG vector_release=0.22.3
-ARG postgres_exporter_release=0.9.0
+ARG postgres_exporter_release=0.15.0
 ARG envoy_release=1.28.0
 
 # Update `gateway-28` in the URL below if upgrading above v2.8.x.
 ARG kong_release=2.8.1
 
-FROM khulnasoft/postgres:${postgres_version} as base
+FROM supabase/postgres:${postgres_version} as base
 ARG TARGETARCH
 ARG postgresql_major
 
@@ -172,7 +172,7 @@ RUN ln -s /data/opt/supabase-admin-api /opt/supabase-admin-api \
 # Scripts for adminapi
 COPY ansible/files/admin_api_scripts /root
 COPY --chown=adminapi:adminapi docker/all-in-one/etc/adminapi /etc/adminapi
-COPY docker/all-in-one/etc/sudoers.d /etc/sudoers.d/
+COPY --chmod=644 docker/all-in-one/etc/sudoers.d /etc/sudoers.d/
 
 # Script for pg_egress_collect
 COPY --chown=adminapi:adminapi docker/all-in-one/opt/pg_egress_collect /opt/pg_egress_collect
@@ -276,6 +276,7 @@ RUN mkdir -p /var/log/wal-g \
     && chown adminapi:adminapi /etc/wal-g/config.json \
     && echo '{"WALG_S3_PREFIX": "s3://foo/bar/"}' > /etc/wal-g/config.json
 RUN chown -R adminapi:adminapi /etc/adminapi
+RUN sed -i "s;#include = '/etc/postgresql-custom/generated-optimizations.conf';include = '/etc/postgresql-custom/generated-optimizations.conf';" /etc/postgresql/postgresql.conf
 
 # Add healthcheck and entrypoint scripts
 COPY docker/all-in-one/healthcheck.sh /usr/local/bin/

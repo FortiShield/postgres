@@ -15,8 +15,8 @@ postgrest_release: "12.0.2"
 postgrest_arm_release_checksum: sha1:a08eaa2af548d44b4c8ea61b0223fb7019f5c768
 postgrest_x86_release_checksum: sha1:40f65ded06b9de6567fbe2cd7a317196e22dd595
 
-gotrue_release: 2.143.1
-gotrue_release_checksum: sha1:a1fa5fbd1294614d56df341f5e79022ec994c50a
+gotrue_release: 2.148.0
+gotrue_release_checksum: sha1:e3ab39c10605b6a00a953528022b563c8fa1ca33
 
 aws_cli_release: "2.2.7"
 
@@ -46,8 +46,8 @@ postgres_exporter_release_checksum:
   arm64: sha256:29ba62d538b92d39952afe12ee2e1f4401250d678ff4b354ff2752f4321c87a0
   amd64: sha256:cb89fc5bf4485fb554e0d640d9684fae143a4b2d5fa443009bd29c59f9129e84
 
-adminapi_release: 0.63.0
-adminmgr_release: 0.15.0
+adminapi_release: 0.63.5
+adminmgr_release: 0.19.0
 
 # Postgres Extensions
 postgis_release: "3.3.2"
@@ -59,8 +59,8 @@ pgrouting_release_checksum: sha256:a4e034efee8cf67582b67033d9c3ff714a09d8f542533
 pgtap_release: "1.2.0"
 pgtap_release_checksum: sha256:9c7c3de67ea41638e14f06da5da57bac6f5bd03fea05c165a0ec862205a5c052
 
-pg_cron_release: "1.4.2"
-pg_cron_release_checksum: sha256:3652722ea98d94d8e27bf5e708dd7359f55a818a43550d046c5064c98876f1a8
+pg_cron_release: "1.6.2"
+pg_cron_release_checksum: sha256:9f4eb3193733c6fa93a6591406659aac54b82c24a5d91ffaf4ec243f717d94a0
 
 pgaudit_release: "1.7.0"
 pgaudit_release_checksum: sha256:8f4a73e451c88c567e516e6cba7dc1e23bc91686bb6f1f77f8f3126d428a8bd8
@@ -82,8 +82,8 @@ timescaledb_release_checksum: sha256:883638f2e79d25ec88ee58f603f3c81c999b6364cb4
 wal2json_release: "2_5"
 wal2json_release_checksum: sha256:b516653575541cf221b99cf3f8be9b6821f6dbcfc125675c85f35090f824f00e
 
-supautils_release: "1.9.0"
-supautils_release_checksum: sha256:bc2f2b6393f865e7db973630334e1ce8b561e8774e23cd14396192232fb59ad7
+supautils_release: "2.2.0"
+supautils_release_checksum: sha256:0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5
 
 pljava_release: master
 pljava_release_checksum: sha256:e99b1c52f7b57f64c8986fe6ea4a6cc09d78e779c1643db060d0ac66c93be8b6
@@ -127,7 +127,7 @@ groonga_release_checksum: sha256:1c2d1a6981c1ad3f02a11aff202b15ba30cb1c6147f1fa9
 pgroonga_release: "3.0.7"
 pgroonga_release_checksum: sha256:885ff3878cc30e9030e5fc56d561bc8b66df3ede1562c9d802bc0ea04fe5c203
 
-wrappers_release: "0.2.0"
+wrappers_release: "0.3.0"
 
 hypopg_release: "1.3.1"
 hypopg_release_checksum: sha256:e7f01ee0259dc1713f318a108f987663d60f3041948c2ada57a94b469565ca8e
@@ -135,8 +135,11 @@ hypopg_release_checksum: sha256:e7f01ee0259dc1713f318a108f987663d60f3041948c2ada
 pg_repack_release: "1.5.0"
 pg_repack_release_checksum: sha256:9a14d6a95bfa29f856aa10538238622c1f351d38eb350b196c06720a878ccc52
 
-pgvector_release: "0.6.0"
-pgvector_release_checksum: sha256:b0cf4ba1ab016335ac8fb1cada0d2106235889a194fffeece217c5bda90b2f19
+pgvector_release: "0.6.2"
+pgvector_release_checksum: sha256:a11cc249a9f3f3d7b13069a1696f2915ac28991a72d7ba4e2bcfdceddbaeae49
 
 pg_tle_release: "1.3.2"
 pg_tle_release_checksum: sha256:d04f72d88b21b954656609743560684ac42645b64a36c800d4d2f84d1f180de1
+
+index_advisor_release: "0.2.0"
+index_advisor_checksum: sha256:2d3642012a9185cda51f1e82ba43d64a81b24a2655a3ac3afdcbbd95d46a1a27
