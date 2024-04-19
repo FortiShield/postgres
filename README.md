@@ -15,7 +15,7 @@ Unmodified Postgres with some useful plugins. Our goal with this repo is not to 
 | [PostGIS](https://postgis.net/) | [3.3.2](https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.3.2/NEWS) | Postgres' most popular extension - support for geographic objects. |
 | [pgRouting](https://pgrouting.org/) | [v3.4.1](https://github.com/pgRouting/pgrouting/releases/tag/v3.4.1) | Extension of PostGIS - provides geospatial routing functionalities. |
 | [pgTAP](https://pgtap.org/) | [v1.2.0](https://github.com/theory/pgtap/releases/tag/v1.2.0) | Unit Testing for Postgres. |
-| [pg_cron](https://github.com/citusdata/pg_cron) | [v1.4.2](https://github.com/citusdata/pg_cron/releases/tag/v1.4.2) | Run CRON jobs inside Postgres. |
+| [pg_cron](https://github.com/citusdata/pg_cron) | [v1.6.2](https://github.com/citusdata/pg_cron/releases/tag/v1.6.2) | Run CRON jobs inside Postgres. |
 | [pgAudit](https://www.pgaudit.org/) | [1.7.0](https://github.com/pgaudit/pgaudit/releases/tag/1.7.0) | Generate highly compliant audit logs. |
 | [pgjwt](https://github.com/michelp/pgjwt) | [commit](https://github.com/michelp/pgjwt/commit/9742dab1b2f297ad3811120db7b21451bca2d3c9) | Generate JSON Web Tokens (JWT) in Postgres. |
 | [pgsql-http](https://github.com/pramsey/pgsql-http) | [1.5.0](https://github.com/pramsey/pgsql-http/releases/tag/v1.5.0) | HTTP client for Postgres. |
@@ -42,8 +42,8 @@ Can't find your favorite extension? Suggest for it to be added into future relea
 Aside from having [ufw](https://help.ubuntu.com/community/UFW),[fail2ban](https://www.fail2ban.org/wiki/index.php/Main_Page), and [unattended-upgrades](https://wiki.debian.org/UnattendedUpgrades) installed, we also have the following enhancements in place: 
 | Enhancement | Description |
 | ------------- | ------------- |
-| [fail2ban filter](https://github.com/khulnasoft/postgres/blob/develop/ansible/files/fail2ban_config/filter-postgresql.conf.j2) for PostgreSQL access | Monitors for brute force attempts over at port `5432`. |
-| [fail2ban filter](https://github.com/khulnasoft/postgres/blob/develop/ansible/files/fail2ban_config/filter-pgbouncer.conf.j2) for PgBouncer access | Monitors for brute force attempts over at port `6543`. |
+| [fail2ban filter](https://github.com/supabase/postgres/blob/develop/ansible/files/fail2ban_config/filter-postgresql.conf.j2) for PostgreSQL access | Monitors for brute force attempts over at port `5432`. |
+| [fail2ban filter](https://github.com/supabase/postgres/blob/develop/ansible/files/fail2ban_config/filter-pgbouncer.conf.j2) for PgBouncer access | Monitors for brute force attempts over at port `6543`. |
 
 ## Additional Goodies
 *This is only available for our AWS EC2/ DO Droplet images*
@@ -56,11 +56,11 @@ Aside from having [ufw](https://help.ubuntu.com/community/UFW),[fail2ban](https:
 
 ## Install
 
-See all installation instructions in the [repo wiki](https://github.com/khulnasoft/postgres/wiki).
+See all installation instructions in the [repo wiki](https://github.com/supabase/postgres/wiki).
 
-[![Docker](https://github.com/khulnasoft/postgres/blob/develop/docs/img/docker.png)](https://github.com/khulnasoft/postgres/wiki/Docker)
-[![Digital Ocean](https://github.com/khulnasoft/postgres/blob/develop/docs/img/digital-ocean.png)](https://github.com/khulnasoft/postgres/wiki/Digital-Ocean)
-[![AWS](https://github.com/khulnasoft/postgres/blob/develop/docs/img/aws.png)](https://github.com/khulnasoft/postgres/wiki/AWS-EC2)
+[![Docker](https://github.com/supabase/postgres/blob/develop/docs/img/docker.png)](https://github.com/supabase/postgres/wiki/Docker)
+[![Digital Ocean](https://github.com/supabase/postgres/blob/develop/docs/img/digital-ocean.png)](https://github.com/supabase/postgres/wiki/Digital-Ocean)
+[![AWS](https://github.com/supabase/postgres/blob/develop/docs/img/aws.png)](https://github.com/supabase/postgres/wiki/AWS-EC2)
 
 ### Marketplace Images
 |   | Postgres & Extensions | PgBouncer | PostgREST | WAL-G |
@@ -96,8 +96,8 @@ $ time packer build -timestamp-ui \
 
 ## Roadmap
 
-- [Support for more images](https://github.com/khulnasoft/postgres/issues/4)
-- [Vote for more plugins/extensions](https://github.com/khulnasoft/postgres/issues/5)
+- [Support for more images](https://github.com/supabase/postgres/issues/4)
+- [Vote for more plugins/extensions](https://github.com/supabase/postgres/issues/5)
 - Open a github issue if you have a feature request
 
 ## License
@@ -109,3 +109,12 @@ $ time packer build -timestamp-ui \
 We are building the features of Firebase using enterprise-grade, open source products. We support existing communities wherever possible, and if the products don’t exist we build them and open source them ourselves.
 
 [![New Sponsor](https://user-images.githubusercontent.com/10214025/90518111-e74bbb00-e198-11ea-8f88-c9e3c1aa4b5b.png)](https://github.com/sponsors/supabase)
+
+
+## Experimental Nix Packaging of resources
+
+There is a `/nix` folder in this repo, plus a `flake.nix` and `flake.lock` that facilitate using the Nix package management system to package supabase/postgres, and all of our extensions and wrappers. A user will need nix installed on their machine. As of 4/1/2024 the package set only builds on target machines (`x86_64-linux` and `aarch64-linux`), however work is under way to also support building and using directly on `aarch64-darwin` (macOs). As of 4/1/2024, versions of packages and extensions are synced from `/ansible/vars.yml` via a utility that can be run by executing `nix run .#sync-exts-versions` (you must have nix installed and be on the supported `x86_64-linux` and `aarch64-linux` for this command to work). The short term goal is to sync these versions as they are updated by our infrastructure and postgres teams, then to see the nix packaged versions build successfully in parallel over time, along with tests of the nix packaged versions passing. 
+
+The supabase/postgres repo will continue to source it's dependencies from ansible for the short term, while we stabilize this nix build. 
+
+Forthcoming PR's will include: integrating the nix work into our ansible/packer builds, building natively on aarch64-darwin (macOs), more testing

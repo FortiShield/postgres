@@ -39,7 +39,7 @@ jobs:
           target: production
           build-args: |
             ${{ steps.args.outputs.result }}
-          tags: khulnasoft/postgres:latest
+          tags: supabase/postgres:latest
           cache-from: |
             type=gha,scope=${{ github.ref_name }}-latest-${{ matrix.arch }}
             type=gha,scope=${{ github.base_ref }}-latest-${{ matrix.arch }}
@@ -51,7 +51,7 @@ jobs:
           -e POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} \
           -p ${{ env.POSTGRES_PORT }}:5432 \
           --name supabase_postgres \
-          -d khulnasoft/postgres:latest
+          -d supabase/postgres:latest
 
       - name: Install psql
         run: |

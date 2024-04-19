@@ -91,7 +91,7 @@ function setup_postgres {
   tar -xzvf "$INIT_PAYLOAD_PATH" -C / ./etc/postgresql-custom/pgsodium_root.key
   echo "include = '/etc/postgresql-custom/postgresql-platform-defaults.conf'" >> $PG_CONF
 
-  # TODO (darora): walg enablement is temporarily performed here until changes from https://github.com/khulnasoft/postgres/pull/639 get picked up
+  # TODO (darora): walg enablement is temporarily performed here until changes from https://github.com/supabase/postgres/pull/639 get picked up
   # other things will still be needed in the future (auth_delay config)
   sed -i \
       -e "s|#include = '/etc/postgresql-custom/wal-g.conf'|include = '/etc/postgresql-custom/wal-g.conf'|g" \
